@@ -74,7 +74,7 @@ func delete(
 	request,
 	response interface{},
 ) error {
-	return call(ctx, client, path, query, http.MethodDelete, http.StatusNoContent, request, response)
+	return call(ctx, client, path, query, http.MethodDelete, http.StatusOK, request, response)
 }
 
 func call(
@@ -135,7 +135,7 @@ func makeCall(ctx context.Context, request *apiRequest) *apiResponse {
 	}
 
 	var requestBody []byte
-	if request.httpMethod == http.MethodPost {
+	if request.httpMethod == http.MethodPost || request.httpMethod == http.MethodPut {
 		requestBody = request.body
 	}
 
