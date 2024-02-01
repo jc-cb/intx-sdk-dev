@@ -14,15 +14,10 @@ type ListInstrumentsResponse struct {
 func (c Client) ListInstruments(ctx context.Context, request *ListInstrumentsRequest) (*ListInstrumentsResponse, error) {
 	path := "/instruments"
 
-	var instruments []*Instrument
+	response := &ListInstrumentsResponse{Request: request}
 
-	if err := get(ctx, c, path, emptyQueryParams, nil, &instruments); err != nil {
+	if err := get(ctx, c, path, emptyQueryParams, nil, &response.Instruments); err != nil {
 		return nil, err
-	}
-
-	response := &ListInstrumentsResponse{
-		Instruments: instruments,
-		Request:     request,
 	}
 
 	return response, nil

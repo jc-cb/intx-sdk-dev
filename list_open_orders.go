@@ -7,7 +7,7 @@ import (
 
 type ListOpenOrdersRequest struct {
 	Portfolio     string `json:"portfolio"` // required
-	Instrument    string `json:"instrument"`
+	Instrument    string `json:"instrument,omitempty"`
 	ClientOrderId string `json:"client_order_id,omitempty"`
 	EventType     string `json:"event_type,omitempty"`
 	RefDatetime   string `json:"ref_datetime,omitempty"`

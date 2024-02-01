@@ -14,15 +14,10 @@ type ListPortfoliosResponse struct {
 func (c Client) ListPortfolios(ctx context.Context, request *ListPortfoliosRequest) (*ListPortfoliosResponse, error) {
 	path := "/portfolios"
 
-	var portfolios []*Portfolio
+	response := &ListPortfoliosResponse{Request: request}
 
-	if err := get(ctx, c, path, emptyQueryParams, request, &portfolios); err != nil {
+	if err := get(ctx, c, path, emptyQueryParams, request, &response.Portfolios); err != nil {
 		return nil, err
-	}
-
-	response := &ListPortfoliosResponse{
-		Portfolios: portfolios,
-		Request:    request,
 	}
 
 	return response, nil

@@ -10,8 +10,8 @@ type GetSupportedNetworksRequest struct {
 }
 
 type GetSupportedNetworksResponse struct {
-	NetworkDetail []Network
-	Request       *GetSupportedNetworksRequest
+	NetworkDetail []Network                    `json:"network_detail"`
+	Request       *GetSupportedNetworksRequest `json:"request"`
 }
 
 func (c Client) GetSupportedNetworks(ctx context.Context,
@@ -19,15 +19,10 @@ func (c Client) GetSupportedNetworks(ctx context.Context,
 
 	path := fmt.Sprintf("/assets/%s/networks", request.Asset)
 
-	var networkDetail []Network
+	response := &GetSupportedNetworksResponse{Request: request}
 
-	if err := get(ctx, c, path, emptyQueryParams, nil, &networkDetail); err != nil {
+	if err := get(ctx, c, path, emptyQueryParams, nil, &response.NetworkDetail); err != nil {
 		return nil, err
-	}
-
-	response := &GetSupportedNetworksResponse{
-		NetworkDetail: networkDetail,
-		Request:       request,
 	}
 
 	return response, nil

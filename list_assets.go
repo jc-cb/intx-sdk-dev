@@ -14,15 +14,10 @@ type ListAssetsResponse struct {
 func (c Client) ListAssets(ctx context.Context, request *ListAssetsRequest) (*ListAssetsResponse, error) {
 	path := "/assets"
 
-	var assets []*Asset
+	response := &ListAssetsResponse{Request: request}
 
-	if err := get(ctx, c, path, emptyQueryParams, nil, &assets); err != nil {
+	if err := get(ctx, c, path, emptyQueryParams, nil, &response.Assets); err != nil {
 		return nil, err
-	}
-
-	response := &ListAssetsResponse{
-		Assets:  assets,
-		Request: request,
 	}
 
 	return response, nil

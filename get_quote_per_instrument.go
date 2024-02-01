@@ -10,8 +10,8 @@ type GetInstrumentQuoteRequest struct {
 }
 
 type GetInstrumentQuoteResponse struct {
-	InstrumentQuote *Quote
-	Request         *GetInstrumentQuoteRequest
+	InstrumentQuote *Quote                     `json:"instrument_quote"`
+	Request         *GetInstrumentQuoteRequest `json:"request"`
 }
 
 func (c Client) GetInstrumentQuote(ctx context.Context,
