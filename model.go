@@ -195,6 +195,73 @@ type MarginOverride struct {
 	MarginOverride string `json:"margin_override"`
 }
 
+type Fill struct {
+	PortfolioId    string `json:"portfolio_id"`
+	PortfolioUuid  string `json:"portfolio_uuid"`
+	PortfolioName  string `json:"portfolio_name"`
+	FillId         string `json:"fill_id"`
+	ExecId         string `json:"exec_id"`
+	OrderId        string `json:"order_id"`
+	InstrumentId   string `json:"instrument_id"`
+	InstrumentUuid string `json:"instrument_uuid"`
+	Symbol         string `json:"symbol"`
+	MatchId        string `json:"match_id"`
+	FillPrice      string `json:"fill_price"`
+	FillQty        string `json:"fill_qty"`
+	ClientId       string `json:"client_id"`
+	ClientOrderId  string `json:"client_order_id"`
+	OrderQty       string `json:"order_qty"`
+	LimitPrice     string `json:"limit_price"`
+	TotalFilled    string `json:"total_filled"`
+	FilledVwap     string `json:"filled_vwap"`
+	ExpireTime     string `json:"expire_time"`
+	StopPrice      string `json:"stop_price"`
+	Side           string `json:"side"`
+	Tif            string `json:"tif"`
+	StpMode        string `json:"stp_mode"`
+	Flags          string `json:"flags"`
+	Fee            string `json:"fee"`
+	FeeAsset       string `json:"fee_asset"`
+	OrderStatus    string `json:"order_status"`
+	EventTime      string `json:"event_time"`
+}
+
+type PaginationSubset struct {
+	ResultLimit  int `json:"result_limit"`
+	ResultOffset int `json:"result_offset"`
+}
+
+type PortfolioSubset struct {
+	ID   string `json:"id"`
+	UUID string `json:"uuid"`
+	Name string `json:"name"`
+}
+
+type Transfer struct {
+	TransferUUID       string          `json:"transfer_uuid"`
+	Type               string          `json:"type"`
+	Amount             float64         `json:"amount"`
+	Asset              string          `json:"asset"`
+	Status             string          `json:"status"`
+	NetworkName        string          `json:"network_name"`
+	CreatedAt          string          `json:"created_at"`
+	UpdatedAt          string          `json:"updated_at"`
+	FromPortfolio      PortfolioSubset `json:"from_portfolio"`
+	ToPortfolio        PortfolioSubset `json:"to_portfolio"`
+	FromAddress        float64         `json:"from_address"`
+	ToAddress          float64         `json:"to_address"`
+	FromCBAccount      string          `json:"from_cb_account"`
+	ToCBAccount        string          `json:"to_cb_account"`
+	FromCounterpartyID string          `json:"from_counterparty_id"`
+	ToCounterpartyID   string          `json:"to_counterparty_id"`
+	InstrumentID       int64           `json:"instrument_id"`
+	PositionID         string          `json:"position_id"`
+}
+
+type TransfersResponse struct {
+	Pagination PaginationSubset `json:"pagination"`
+	Results    []Transfer       `json:"results"`
+}
 type PaginationParams struct {
 	RefDatetime  string `json:"ref_datetime"`
 	ResultLimit  int    `json:"result_limit"`
