@@ -15,7 +15,9 @@ type CancelOrderResponse struct {
 	Request *CancelOrderRequest
 }
 
-func (c Client) CancelOrder(ctx context.Context, request *CancelOrderRequest) (*CancelOrderResponse, error) {
+func (c Client) CancelOrder(ctx context.Context,
+	request *CancelOrderRequest) (*CancelOrderResponse, error) {
+
 	path := fmt.Sprintf("/orders/%s", request.Id)
 
 	queryParams := appendQueryParam("", "portfolio", request.Portfolio)

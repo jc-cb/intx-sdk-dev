@@ -2,18 +2,31 @@ package intx
 
 import (
 	"context"
-	"errors"
 )
+
+type CreateOrderRequest struct {
+	ClientOrderId string  `json:"client_order_id"`
+	Side          string  `json:"side"`
+	Size          string  `json:"size"`
+	Tif           string  `json:"tif"`
+	Instrument    string  `json:"instrument"`
+	Type          string  `json:"type"`
+	Price         string  `json:"price,omitempty"`
+	StopPrice     *string `json:"stop_price,omitempty"`
+	ExpireTime    *string `json:"expire_time,omitempty"`
+	Portfolio     string  `json:"portfolio"`
+	User          *string `json:"user,omitempty"`
+	StpMode       *string `json:"stp_mode,omitempty"`
+	PostOnly      *bool   `json:"post_only,omitempty"`
+}
 
 type CreateOrderResponse struct {
 	Order   *Order              `json:"order"`
 	Request *CreateOrderRequest `json:"request"`
 }
 
-func (c Client) CreateOrder(ctx context.Context, request *CreateOrderRequest) (*CreateOrderResponse, error) {
-	if request == nil {
-		return nil, errors.New("create order request is nil")
-	}
+func (c Client) CreateOrder(ctx context.Context,
+	request *CreateOrderRequest) (*CreateOrderResponse, error) {
 
 	path := "/orders"
 

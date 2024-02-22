@@ -149,22 +149,6 @@ type Details struct {
 	Positions []Position `json:"positions"`
 }
 
-type CreateOrderRequest struct {
-	ClientOrderId string  `json:"client_order_id"`
-	Side          string  `json:"side"`
-	Size          string  `json:"size"`
-	Tif           string  `json:"tif"`
-	Instrument    string  `json:"instrument"`
-	Type          string  `json:"type"`
-	Price         string  `json:"price,omitempty"`
-	StopPrice     *string `json:"stop_price,omitempty"`
-	ExpireTime    *string `json:"expire_time,omitempty"`
-	Portfolio     string  `json:"portfolio"`
-	User          *string `json:"user,omitempty"`
-	StpMode       *string `json:"stp_mode,omitempty"`
-	PostOnly      *bool   `json:"post_only,omitempty"`
-}
-
 type Order struct {
 	OrderId        string `json:"order_id"`
 	ClientOrderId  string `json:"client_order_id"`
@@ -258,10 +242,35 @@ type Transfer struct {
 	PositionID         string          `json:"position_id"`
 }
 
+type Address struct {
+	Address      string `json:"address"`
+	NetworkArnId string `json:"network_arn_id"`
+}
+
+type Counterparty struct {
+	PortfolioUuid  string `json:"portfolio_uuid"`
+	CounterpartyId string `json:"counterparty_id"`
+}
+
+type CounterpartyWithdrawal struct {
+	Idem                 string  `json:"idem"`
+	PortfolioUuid        string  `json:"portfolio_uuid"`
+	SourceCounterpartyId string  `json:"source_counterparty_id"`
+	TargetCounterpartyId string  `json:"target_counterparty_id"`
+	Asset                string  `json:"asset"`
+	Amount               float64 `json:"amount"`
+}
+
+type Validation struct {
+	CounterpartyId string `json:"counterparty_id"`
+	Valid          bool   `json:"valid"`
+}
+
 type TransfersResponse struct {
 	Pagination PaginationSubset `json:"pagination"`
 	Results    []Transfer       `json:"results"`
 }
+
 type PaginationParams struct {
 	RefDatetime  string `json:"ref_datetime"`
 	ResultLimit  int    `json:"result_limit"`

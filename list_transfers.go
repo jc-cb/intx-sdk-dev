@@ -50,7 +50,7 @@ func (c Client) ListTransfers(ctx context.Context, request *ListTransfersRequest
 
 	response := &ListTransfersResponse{Request: request}
 
-	if err := get(ctx, c, path, emptyQueryParams, nil, &response.Transfers); err != nil {
+	if err := get(ctx, c, path, queryParams, nil, &response.Transfers); err != nil {
 		return nil, err
 	}
 

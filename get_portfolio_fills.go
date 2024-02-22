@@ -18,7 +18,7 @@ type GetPortfolioFillsRequest struct {
 
 type GetPortfolioFillsResponse struct {
 	Pagination PaginationParams          `json:"pagination"`
-	Results    []Fills                   `json:"results"`
+	Results    []Fill                    `json:"results"`
 	Request    *GetPortfolioFillsRequest `json:"request"`
 }
 

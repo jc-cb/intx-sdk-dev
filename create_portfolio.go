@@ -2,7 +2,6 @@ package intx
 
 import (
 	"context"
-	"errors"
 )
 
 type CreatePortfolioRequest struct {
@@ -14,10 +13,8 @@ type CreatePortfolioResponse struct {
 	Request   *CreatePortfolioRequest `json:"request"`
 }
 
-func (c Client) CreatePortfolio(ctx context.Context, request *CreatePortfolioRequest) (*CreatePortfolioResponse, error) {
-	if request == nil {
-		return nil, errors.New("create Portfolio request is nil")
-	}
+func (c Client) CreatePortfolio(ctx context.Context,
+	request *CreatePortfolioRequest) (*CreatePortfolioResponse, error) {
 
 	path := "/portfolios"
 
